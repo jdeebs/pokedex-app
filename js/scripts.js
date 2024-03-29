@@ -18,6 +18,12 @@ let pokemonList = [
     types: "electric",
     abilities: ["static", "lightningrod"],
   },
+  {
+    name: "Gyarados",
+    height: 6.5,
+    types: ["water", "flying"],
+    abilities: ["intimidate", "moxie"],
+  },
 ];
 
 // Loop through each Pokemon in the pokemonList array
@@ -32,7 +38,7 @@ for (let i = 0; i < pokemonList.length; i++) {
     // If height of current Pokemon is less than 1 meter, write a message indicating the Pokemon is shorter than 1 meter
     document.write(pokemonList[i].name + " is shorter than 1 meter!");
   } else {
-    // If height of current Pokemon is taller than 2 meters, write a message indicating so
-    document.write(pokemonList[i].name + " is taller than 2 meters!");
+    // If height of current Pokemon is taller than 2 meters, write a message indicating it's big
+    document.write(" Wow, that's big!");
   }
 }
