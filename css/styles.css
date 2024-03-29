@@ -1,0 +1,36 @@
+/* 
+Colors used
+
+Text Color (White): #eee;
+Link Text Color: #EA92B6;
+Secondary Link Text Color: #ED548D;
+Primary Color: #EDD1D1;
+Secondary Color: #AEA2C6;
+Background Color: #8A7295;
+
+*/
+
+:root {
+    font-size: 62.5%;
+    --primary-color: #EDD1D1;
+    --secondary-color: #AEA2C6;
+    --background-color: #8A7295;
+    --text-color: #eee;
+    --link-color: #EA92B6;
+    --secondary-link-color: #ED548D;
+    --header-font-size: 2.4em;
+    --medium-font-size: 1.6em;
+    --small-font-size: 0.6em;
+    --space-unit: 1em;
+    --space-sm: calc(0.75 * var(--space-unit));
+    --space-md: calc(1.25 * var(--space-unit));
+    --space-lg: calc(2 * var(--space-unit));
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background-color: var(--background-color);
+}
