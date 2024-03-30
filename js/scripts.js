@@ -26,6 +26,9 @@ let pokemonList = [
   },
 ];
 
+// Create Pokedex container wrapper for styling
+document.write(`<div class="pokedex-container-wrapper">`);
+
 // Create Pokedex container for styling
 document.write(`<div class="pokedex-container">`);
 

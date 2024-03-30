@@ -25,6 +25,7 @@ Background Color: #8A7295;
   --space-sm: calc(0.75 * var(--space-unit));
   --space-md: calc(1.25 * var(--space-unit));
   --space-lg: calc(2 * var(--space-unit));
+  --rounded-borders: 10px;
 }
 
 * {
@@ -57,10 +58,16 @@ ul {
 
 
 .pokedex-title {
+    margin-bottom: 20px;
     font-family: "Cairo", sans-serif;
     font-weight: 800;
     color: #000;
     text-align: center;
+}
+
+.pokedex-container-wrapper {
+    display: flex;
+    justify-content: center;
 }
 
 .pokedex-container {
@@ -70,9 +77,14 @@ ul {
 }
 
 .pokemon {
+    max-width: 400px;
+    padding: 10px;
     font-size: calc(0.75 * var(--header-font-size));
     font-weight: 700;
+    color: #000;
     background-color: var(--secondary-color);
+    border-radius: 3px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .height-info {
