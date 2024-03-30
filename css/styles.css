@@ -81,6 +81,7 @@ ul {
     padding: 10px;
     font-size: calc(0.75 * var(--header-font-size));
     font-weight: 700;
+    line-height: 1.5;
     color: #000;
     background-color: var(--secondary-color);
     border-radius: 3px;
