@@ -26,6 +26,9 @@ let pokemonList = [
   },
 ];
 
+// Create Pokedex container for styling
+document.write(`<div class="pokedex-container">`);
+
 // Loop through each Pokemon in the pokemonList array
 for (let i = 0; i < pokemonList.length; i++) {
   // Start a new div section for each Pokemon
@@ -60,3 +63,6 @@ for (let i = 0; i < pokemonList.length; i++) {
   document.write(`</div>`); // Close the height-info div
   document.write(`</div>`); // Close the pokemon div
 }
+
+// Close the Pokedex container
+document.write(`</div>`);

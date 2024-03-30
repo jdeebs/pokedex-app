@@ -39,4 +39,43 @@ body {
   font-family: "Quattrocento Sans", sans-serif;
   font-weight: 400;
   font-size: var(--medium-font-size);
+  color: var(--text-color);
+}
+
+header {
+    background-color: var(--primary-color);
+    font-size: var(--header-font-size);
+}
+
+h1,
+h2,
+h3,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+
+.pokedex-title {
+    font-family: "Cairo", sans-serif;
+    font-weight: 800;
+    color: #000;
+    text-align: center;
+}
+
+.pokedex-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.pokemon {
+    font-size: calc(0.75 * var(--header-font-size));
+    font-weight: 700;
+    background-color: var(--secondary-color);
+}
+
+.height-info {
+    font-size: var(--small-font-size);
+    font-weight: 400;
 }
