@@ -1,5 +1,5 @@
 // Define Pokemon data to display from an array of objects inside of an IIFE
-(function () {
+let pokemonRepository = (function () {
   let pokemonList = [
     {
       name: "Bulbasaur",
@@ -26,6 +26,16 @@
       abilities: ["intimidate", "moxie"],
     },
   ];
+
+  // Return an object with 2 public functions assigned as keys
+  return {
+    add: function (pokemon) {
+      pokemonList.push(pokemon);
+    },
+    getAll: function () {
+      return pokemonList;
+    },
+  };
 })();
 
 // Call pokemonList loop function
