@@ -1,30 +1,32 @@
-// Define Pokemon data to display from an array of objects
-let pokemonList = [
-  {
-    name: "Bulbasaur",
-    height: 0.7,
-    types: ["grass", "poison"],
-    abilities: ["chlorophyll", "overgrow"],
-  },
-  {
-    name: "Charizard",
-    height: 1.7,
-    types: ["fire", "flying"],
-    abilities: ["blaze", "solar-power"],
-  },
-  {
-    name: "Pikachu",
-    height: 0.4,
-    types: "electric",
-    abilities: ["static", "lightningrod"],
-  },
-  {
-    name: "Gyarados",
-    height: 6.5,
-    types: ["water", "flying"],
-    abilities: ["intimidate", "moxie"],
-  },
-];
+// Define Pokemon data to display from an array of objects inside of an IIFE
+(function () {
+  let pokemonList = [
+    {
+      name: "Bulbasaur",
+      height: 0.7,
+      types: ["grass", "poison"],
+      abilities: ["chlorophyll", "overgrow"],
+    },
+    {
+      name: "Charizard",
+      height: 1.7,
+      types: ["fire", "flying"],
+      abilities: ["blaze", "solar-power"],
+    },
+    {
+      name: "Pikachu",
+      height: 0.4,
+      types: "electric",
+      abilities: ["static", "lightningrod"],
+    },
+    {
+      name: "Gyarados",
+      height: 6.5,
+      types: ["water", "flying"],
+      abilities: ["intimidate", "moxie"],
+    },
+  ];
+})();
 
 // Call pokemonList loop function
 pokemonList.forEach(pokemonListLoop);
