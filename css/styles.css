@@ -44,8 +44,8 @@ body {
 }
 
 header {
-    background-color: var(--primary-color);
-    font-size: var(--header-font-size);
+  background-color: var(--primary-color);
+  font-size: var(--header-font-size);
 }
 
 h1,
@@ -56,39 +56,34 @@ ul {
   padding: 0;
 }
 
-
 .pokedex-title {
-    margin-bottom: 20px;
-    font-family: "Cairo", sans-serif;
-    font-weight: 800;
-    color: #000;
-    text-align: center;
+  margin-bottom: 20px;
+  font-family: "Cairo", sans-serif;
+  font-weight: 800;
+  color: #000;
+  text-align: center;
 }
 
-.pokedex-container-wrapper {
-    display: flex;
-    justify-content: center;
+.pokemon-list {
+  display: grid;
+  gap: 20px;
+  text-align: center;
 }
 
-.pokedex-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-}
-
-.pokemon {
-    max-width: 400px;
-    padding: 10px;
-    font-size: calc(0.75 * var(--header-font-size));
-    font-weight: 700;
-    line-height: 1.5;
-    color: #000;
-    background-color: var(--secondary-color);
-    border-radius: 3px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+.pokemonButton {
+  width: 400px;
+  max-width: 400px;
+  padding: 10px;
+  font-size: calc(0.5 * var(--medium-font-size));
+  font-weight: 400;
+  text-align: left;
+  color: #000;
+  background-color: var(--secondary-color);
+  border-radius: 3px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .height-info {
-    font-size: var(--small-font-size);
-    font-weight: 400;
+  font-size: var(--small-font-size);
+  font-weight: 400;
 }

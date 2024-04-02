@@ -66,17 +66,18 @@ document.write(`<div class="pokedex-container">`);
 
 // Loop through each Pokemon in the pokemonList array
 function pokemonListLoop(pokemonDetails) {
-  let pokemonList = document.querySelector('ul');
- 
-
-  // Check if the height of the current Pokemon is between 1-2 meters
-  if (pokemonDetails.height > 1 && pokemonDetails.height < 2) {
-  
-  } else if (pokemonDetails.height < 1.0) {
-    
-  } else {
- 
-    return pokemonDetails;
-  }
+  // Assign pokemonList to ul element in html
+  let pokemonList = document.querySelector(".pokemon-list");
+  // Create li item element in DOM
+  let listItem = document.createElement("li");
+  // Create button element in DOM
+  let button = document.createElement("button");
+  // Set the inner text of the button to be Pokemon's name
+  button.innerText = `${pokemonDetails.name}`;
+  // Add a pokemonButton class to the button for styling
+  button.classList.add("pokemonButton");
+  // Append button to listItem as child
+  listItem.appendChild(button);
+  // Append listItem to pokemonList as child
+  pokemonList.appendChild(listItem);
 }
-
