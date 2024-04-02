@@ -30,7 +30,14 @@ let pokemonRepository = (function () {
 
   // Function to add a new Pokemon to the pokemonList array
   function add(pokemon) {
-    pokemonList.push(pokemon);
+    // Check if parameter is an object
+    if (typeof pokemon === "object" && pokemon !== null) {
+      // If an object, push it to the pokemonList array
+      pokemonList.push(pokemon);
+    } else {
+      // If not an object, log an error message
+      console.error("Error: Parameter of add() must be an object");
+    }
   }
 
   // Function to retrieve all Pokemon data from the pokemonList array
