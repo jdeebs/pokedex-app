@@ -66,39 +66,17 @@ document.write(`<div class="pokedex-container">`);
 
 // Loop through each Pokemon in the pokemonList array
 function pokemonListLoop(pokemonDetails) {
-  // Start a new div section for each Pokemon
-  document.write(`<div class="pokemon">`);
-
-  // Write a message with the current Pokemon name and height
-  document.write(`<div class="pokemon-info">`);
-  document.write(
-    `${pokemonDetails.name} (height: ${pokemonDetails.height}m)
-    `
-  );
-  document.write(`</div>`);
+  let pokemonList = document.querySelector('ul');
+ 
 
   // Check if the height of the current Pokemon is between 1-2 meters
-  document.write(`<div class="height-info">`);
   if (pokemonDetails.height > 1 && pokemonDetails.height < 2) {
-    // If height of current Pokemon is between 1-2 meters, write a message indicating the Pokemon is taller than 1 meter
-    document.write(
-      `${pokemonDetails.name} is taller than 1 meter!
-      `
-    );
+  
   } else if (pokemonDetails.height < 1.0) {
-    // If height of current Pokemon is less than 1 meter, write a message indicating the Pokemon is shorter than 1 meter
-    document.write(
-      `${pokemonDetails.name} is shorter than 1 meter!
-      `
-    );
+    
   } else {
-    // If height of current Pokemon is taller than 2 meters, write a message indicating it's big
-    document.write("Wow, that's big!");
+ 
     return pokemonDetails;
   }
-  document.write(`</div>`); // Close the height-info div
-  document.write(`</div>`); // Close the pokemon div
 }
 
-// Close the Pokedex container
-document.write(`</div>`);
