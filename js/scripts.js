@@ -45,39 +45,47 @@ let pokemonRepository = (function () {
     return pokemonList;
   }
 
-  // Return an object with 2 public functions assigned as keys
+  function addListItem(pokemon) {
+    // Assign pokemonList to ul element in html
+    let pokemonList = document.querySelector(".pokemon-list");
+
+    // Create list item element in DOM
+    let listItem = document.createElement("li");
+
+    // Create button element in DOM
+    let button = document.createElement("button");
+
+    // Set the inner text of the button to be Pokemon's name
+    button.innerText = pokemon.name;
+
+    // Add a pokemonButton class to the button for styling
+    button.classList.add("pokemonButton");
+
+    // Append button to listItem as child
+    listItem.appendChild(button);
+
+    // Append listItem to pokemonList as child
+    pokemonList.appendChild(listItem);
+  }
+
+  // Return an object with 3 public functions assigned as keys
   return {
     add: add, // Expose the add function
     getAll: getAll, // Expose the getAll function
+    addListItem: addListItem, // Expose the addListItem function
   };
 })();
 
 // Get the Pokemon list using getAll() function
 let pokemonDetails = pokemonRepository.getAll();
 
-// Call pokemonList loop function
-pokemonDetails.forEach(pokemonListLoop);
+// Loop through each Pokemon in the pokemonList array and add them to the list
+pokemonDetails.forEach(function (pokemon) {
+  pokemonRepository.addListItem(pokemon);
+});
 
 // Create Pokedex container wrapper for styling
 document.write(`<div class="pokedex-container-wrapper">`);
 
 // Create Pokedex container for styling
 document.write(`<div class="pokedex-container">`);
-
-// Loop through each Pokemon in the pokemonList array
-function pokemonListLoop(pokemonDetails) {
-  // Assign pokemonList to ul element in html
-  let pokemonList = document.querySelector(".pokemon-list");
-  // Create li item element in DOM
-  let listItem = document.createElement("li");
-  // Create button element in DOM
-  let button = document.createElement("button");
-  // Set the inner text of the button to be Pokemon's name
-  button.innerText = `${pokemonDetails.name}`;
-  // Add a pokemonButton class to the button for styling
-  button.classList.add("pokemonButton");
-  // Append button to listItem as child
-  listItem.appendChild(button);
-  // Append listItem to pokemonList as child
-  pokemonList.appendChild(listItem);
-}
