@@ -51,13 +51,14 @@ header {
 h1,
 h2,
 h3,
-ul {
+ul,
+li {
   margin: 0;
   padding: 0;
+  list-style-type: none;
 }
 
 .pokedex-title {
-  margin-bottom: 20px;
   font-family: "Cairo", sans-serif;
   font-weight: 800;
   color: #000;
@@ -66,24 +67,54 @@ ul {
 
 .pokemon-list {
   display: grid;
-  gap: 20px;
+  gap: var(--space-md);
   text-align: center;
+  padding-top: var(--space-md);
 }
 
 .pokemonButton {
   width: 400px;
   max-width: 400px;
   padding: 10px;
-  font-size: calc(0.5 * var(--medium-font-size));
+  font-size: var(--medium-font-size);
   font-weight: 400;
   text-align: left;
   color: #000;
   background-color: var(--secondary-color);
   border-radius: 3px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border: none;
+  box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.1);
 }
 
 .height-info {
   font-size: var(--small-font-size);
   font-weight: 400;
+}
+
+@media all and (max-width: 768px) {
+  .pokemon-list {
+    grid-template-columns: repeat(300px, 1fr);
+  }
+
+  .pokemonButton {
+    width: 400px;
+    max-width: 100%;
+  }
+}
+
+@media all and (max-width: 576px) {
+  :root {
+    --header-font-size: 2em;
+    --medium-font-size: 1.4em;
+    --small-font-size: 0.8em;
+  }
+
+  .pokemon-list {
+    grid-template-columns: repeat(300px, 1fr);
+  }
+
+  .pokemonButton {
+    width: 300px;
+    max-width: 100%;
+  }
 }
