@@ -45,6 +45,12 @@ let pokemonRepository = (function () {
     return pokemonList;
   }
 
+  // Function to log Pokemon details to the console
+  function showDetails(pokemon) {
+    console.log(pokemon.name);
+  }
+
+  // Function that adds Pokemon from the pokemonList array
   function addListItem(pokemon) {
     // Assign pokemonList to ul element in html
     let pokemonList = document.querySelector(".pokemon-list");
@@ -66,6 +72,11 @@ let pokemonRepository = (function () {
 
     // Append listItem to pokemonList as child
     pokemonList.appendChild(listItem);
+
+    // Log Pokemon details to console on button click
+    button.addEventListener("click", function () {
+      showDetails(pokemon);
+    });
   }
 
   // Return an object with 3 public functions assigned as keys
@@ -79,8 +90,9 @@ let pokemonRepository = (function () {
 // Get the Pokemon list using getAll() function
 let pokemonDetails = pokemonRepository.getAll();
 
-// Loop through each Pokemon in the pokemonList array and add them to the list
+// Loop through each Pokemon in the pokemonList array
 pokemonDetails.forEach(function (pokemon) {
+  // Add each Pokemon to the list
   pokemonRepository.addListItem(pokemon);
 });
 
