@@ -1,32 +1,8 @@
 // Define Pokemon data to display from an array of objects inside of an IIFE
 let pokemonRepository = (function () {
   // Initialize an array to store Pokemon data
-  let pokemonList = [
-    {
-      name: "Bulbasaur",
-      height: 0.7,
-      types: ["grass", "poison"],
-      abilities: ["chlorophyll", "overgrow"],
-    },
-    {
-      name: "Charizard",
-      height: 1.7,
-      types: ["fire", "flying"],
-      abilities: ["blaze", "solar-power"],
-    },
-    {
-      name: "Pikachu",
-      height: 0.4,
-      types: "electric",
-      abilities: ["static", "lightningrod"],
-    },
-    {
-      name: "Gyarados",
-      height: 6.5,
-      types: ["water", "flying"],
-      abilities: ["intimidate", "moxie"],
-    },
-  ];
+  let pokemonList = [];
+  let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=150";
 
   // Function to add a new Pokemon to the pokemonList array
   function add(pokemon) {
@@ -79,6 +55,35 @@ let pokemonRepository = (function () {
     });
   }
 
+  // Function to load the list of Pokemon from an API
+  function loadList() {
+    // Fetch data from API
+    return (
+      fetch(apiUrl)
+        // Parse response as JSON
+        .then(function (response) {
+          return response.json();
+        })
+        // Process JSON data
+        .then(function (json) {
+          // Iterate through each item in the JSON results
+          json.results.forEach(function (item) {
+            // Create a Pokemon object with name and details URL
+            let pokemon = {
+              name: item.name,
+              detailsUrl: item.url,
+            };
+            // Add the Pokemon Object to the pokemonList array
+            add(pokemon);
+          });
+        })
+        // Handle errors
+        .catch(function (e) {
+          console.error(e);
+        })
+    );
+  }
+
   // Return an object with 3 public functions assigned as keys
   return {
     add: add, // Expose the add function
@@ -86,6 +91,15 @@ let pokemonRepository = (function () {
     addListItem: addListItem, // Expose the addListItem function
   };
 })();
+
+// Load the list of Pokemon from the API and add them to the page
+pokemonRepository.loadList().then(function () {
+  // Iterate through each Pokemon in the pokemonList array
+  pokemonRepository.getAll().forEach(function (pokemon) {
+    // Add each Pokemon to the list
+    pokemonRepository.addListItem(pokemon);
+  });
+});
 
 // Get the Pokemon list using getAll() function
 let pokemonDetails = pokemonRepository.getAll();
