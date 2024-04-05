@@ -59,6 +59,9 @@ let pokemonRepository = (function () {
 
   // Function to load the list of Pokemon from an API
   function loadList() {
+    // Display loading message while data is being loaded
+    showLoadingMessage();
+
     // Fetch data from API
     return (
       fetch(apiUrl)
@@ -78,6 +81,8 @@ let pokemonRepository = (function () {
             // Add the Pokemon Object to the pokemonList array
             add(pokemon);
           });
+          // Hide loading message after data is loaded
+          hideLoadingMessage();
         })
         // Handle errors
         .catch(function (e) {
@@ -88,32 +93,60 @@ let pokemonRepository = (function () {
 
   // Function to load additional details for a specific Pokemon
   function loadDetails(item) {
+    // Display loading message while data is being loaded
+    showLoadingMessage();
+
     // Get the details URL of the Pokemon
     let url = item.detailsUrl;
 
     // Fetch data from the details URL
-    return fetch(url)
-    // Parse response as JSON
-      .then(function (response) {
-        return response.json();
-      })
-      // Process JSON data
-      .then(function (details) {
-        // Extract relevant details from the response
-        // Set the image URL to the front_default sprite
-        item.imageUrl = details.sprites.front_default;
-        // Set the height of the Pokemon
-        item.height = details.height;
-        // Set the types of the Pokemon
-        item.types = details.types;
-      })
-      // Handle errors
-      .catch(function (e) {
-        console.error(e);
-      });
+    return (
+      fetch(url)
+        // Parse response as JSON
+        .then(function (response) {
+          return response.json();
+        })
+        // Process JSON data
+        .then(function (details) {
+          // Extract relevant details from the response
+          // Set the image URL to the front_default sprite
+          item.imageUrl = details.sprites.front_default;
+          // Set the height of the Pokemon
+          item.height = details.height;
+          // Set the types of the Pokemon
+          item.types = details.types;
+          // Hide loading message after data is loaded
+          hideLoadingMessage();
+        })
+        // Handle errors
+        .catch(function (e) {
+          console.error(e);
+        })
+    );
   }
 
-  // Return an object with 3 public functions assigned as keys
+  // Function to display loading message
+  function showLoadingMessage() {
+    // Create loading message element
+    let loadingMessage = document.createElement("div");
+    loadingMessage.innerText = "Loading...";
+    loadingMessage.classList.add("loading-message");
+
+    // Append loading message to the html body
+    document.body.appendChild(loadingMessage);
+  }
+
+  // Function to hide loading message
+  function hideLoadingMessage() {
+    let loadingMessage = document.querySelector(".loading-message");
+
+    // Remove loading message if it exists
+    if (loadingMessage) {
+      loadingMessage.remove();
+    }
+  }
+
+  // Return an object public functions
   return {
     add: add, // Expose the add function
     getAll: getAll, // Expose the getAll function
