@@ -23,7 +23,9 @@ let pokemonRepository = (function () {
 
   // Function to log Pokemon details to the console
   function showDetails(pokemon) {
-    console.log(pokemon.name);
+    loadDetails(pokemon).then(function () {
+      console.log(pokemon.name);
+    });
   }
 
   // Function that adds Pokemon from the pokemonList array
@@ -84,11 +86,29 @@ let pokemonRepository = (function () {
     );
   }
 
+  function loadDetails(item) {
+    let url = item.detailsUrl;
+    return fetch(url)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (details) {
+        item.imageUrl = details.sprites.front_default;
+        item.height = details.height;
+        item.types = details.types;
+      })
+      .catch(function (e) {
+        console.error(e);
+      });
+  }
+
   // Return an object with 3 public functions assigned as keys
   return {
     add: add, // Expose the add function
     getAll: getAll, // Expose the getAll function
     addListItem: addListItem, // Expose the addListItem function
+    loadList: loadList, // Expose the loadList function
+    loadDetails: loadDetails, // Expose the loadDetails function
   };
 })();
 
