@@ -24,7 +24,7 @@ let pokemonRepository = (function () {
   // Function to log Pokemon details to the console
   function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {
-      console.log(pokemon.name);
+      console.log(pokemon);
     });
   }
 
@@ -86,17 +86,28 @@ let pokemonRepository = (function () {
     );
   }
 
+  // Function to load additional details for a specific Pokemon
   function loadDetails(item) {
+    // Get the details URL of the Pokemon
     let url = item.detailsUrl;
+
+    // Fetch data from the details URL
     return fetch(url)
+    // Parse response as JSON
       .then(function (response) {
         return response.json();
       })
+      // Process JSON data
       .then(function (details) {
+        // Extract relevant details from the response
+        // Set the image URL to the front_default sprite
         item.imageUrl = details.sprites.front_default;
+        // Set the height of the Pokemon
         item.height = details.height;
+        // Set the types of the Pokemon
         item.types = details.types;
       })
+      // Handle errors
       .catch(function (e) {
         console.error(e);
       });
