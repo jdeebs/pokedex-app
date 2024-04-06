@@ -63,12 +63,13 @@ li {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: #edd1d1;
   padding: 10px 20px;
   border-radius: 5px;
   font-size: 1.2em;
   color: #333;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  animation: pulse 2s infinite; /* Apply pulse animation */
 }
 
 .pokedex-title {
@@ -97,7 +98,8 @@ li {
   border-radius: 3px;
   border: none;
   box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .pokemonButton:hover {
@@ -122,6 +124,18 @@ li {
   .pokemonButton {
     width: 400px;
     max-width: 100%;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 

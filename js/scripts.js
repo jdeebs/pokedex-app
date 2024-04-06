@@ -136,22 +136,22 @@ let pokemonRepository = (function () {
     document.body.appendChild(loadingMessage);
 
     // Delay hiding the loading message for testing
-    setTimeout(function() {
+    setTimeout(function () {
       hideLoadingMessage();
-    }, 0) // Change delay as needed
+    }, 0); // Change delay as needed for testing
   }
 
   // Function to hide loading message
   function hideLoadingMessage() {
     let loadingMessage = document.querySelector(".loading-message");
 
-  // Delay removing the loading message for testing
-  setTimeout(function() {
-  // Remove loading message if it exists
-    if (loadingMessage) {
-      loadingMessage.remove();
-    }
-  }, 0); // Change delay as needed
+    // Delay removing the loading message for testing
+    setTimeout(function () {
+      // Remove loading message if it exists
+      if (loadingMessage) {
+        loadingMessage.remove();
+      }
+    }, 0); // Change delay as needed for testing
   }
 
   // Return an object public functions
