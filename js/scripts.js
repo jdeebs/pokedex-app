@@ -62,7 +62,7 @@ let pokemonRepository = (function () {
     button.addEventListener("click", function () {
       // Call loadDetails to ensure Pokemon details are loaded
       pokemonRepository.loadDetails(pokemon).then(function () {
-        showModal(pokemonName, `Height: ${pokemon.height}`); // Show modal with Pokemon name and height
+        showModal(pokemonName, `Height: ${pokemon.height}`, pokemon.imageUrl); // Show modal with Pokemon name, height, and sprite image
       });
     });
   }
@@ -168,7 +168,7 @@ let pokemonRepository = (function () {
   }
 
   // Function to show a modal with title and text
-  function showModal(title, text) {
+  function showModal(title, text, imageUrl) {
     // Clear any existing content in the modal container
     let modalContainer = document.querySelector("#modal-container");
     modalContainer.innerHTML = "";
@@ -183,16 +183,19 @@ let pokemonRepository = (function () {
     closeButtonElement.innerText = "Close";
     closeButtonElement.addEventListener("click", hideModal);
 
-    // Create elements for title and content of the modal
+    // Create elements for title, content, and sprite image of the modal
     let titleElement = document.createElement("h1");
     titleElement.innerText = title;
     let contentElement = document.createElement("p");
     contentElement.innerText = text;
+    let imageElement = document.createElement("img");
+    imageElement.src = imageUrl;
 
     // Append elements to the modal
     modal.appendChild(closeButtonElement);
     modal.appendChild(titleElement);
     modal.appendChild(contentElement);
+    modal.appendChild(imageElement);
 
     // Append the modal to the modal container
     modalContainer.appendChild(modal);

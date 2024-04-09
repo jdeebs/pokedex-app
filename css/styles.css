@@ -58,6 +58,12 @@ li {
   list-style-type: none;
 }
 
+img {
+  width: 288px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
 .loading-message {
   position: fixed;
   top: 50%;
