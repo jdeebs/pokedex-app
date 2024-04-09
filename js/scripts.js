@@ -183,19 +183,28 @@ let pokemonRepository = (function () {
     closeButtonElement.innerText = "Close";
     closeButtonElement.addEventListener("click", hideModal);
 
-    // Create elements for title, content, and sprite image of the modal
+    // Create elements for title and content
     let titleElement = document.createElement("h1");
     titleElement.innerText = title;
     let contentElement = document.createElement("p");
     contentElement.innerText = text;
+
+    // Create a container for the image and align it to the right
+    let imageContainer = document.createElement("div");
+    imageContainer.classList.add("image-container");
+
+    // Create element for image
     let imageElement = document.createElement("img");
     imageElement.src = imageUrl;
+
+    // Append image element to the image container
+    imageContainer.appendChild(imageElement);
 
     // Append elements to the modal
     modal.appendChild(closeButtonElement);
     modal.appendChild(titleElement);
     modal.appendChild(contentElement);
-    modal.appendChild(imageElement);
+    modal.appendChild(imageContainer);
 
     // Append the modal to the modal container
     modalContainer.appendChild(modal);

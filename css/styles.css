@@ -64,6 +64,11 @@ img {
   image-rendering: crisp-edges;
 }
 
+.image-container {
+  display: flex;
+  justify-content: center;
+}
+
 .loading-message {
   position: fixed;
   top: 50%;
