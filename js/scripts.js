@@ -167,50 +167,28 @@ let pokemonRepository = (function () {
     }, 0); // Change delay as needed for testing
   }
 
-  // Function to show a modal with title and text
-  function showModal(title, text, imageUrl) {
+  // Function to show a modal with name and content
+  function showModal(item) {
+    let modalTitle = $(".modal-title");
+    let modalBody = $(".modal-body");
+
     // Clear any existing content in the modal container
-    let modalContainer = document.querySelector("#modal-container");
-    modalContainer.innerHTML = "";
+    modalTitle.empty();
+    modalBody.empty();
 
-    // Create a new modal element
-    let modal = document.createElement("div");
-    modal.classList.add("modal");
-
-    // Create a close button for the modal
-    let closeButtonElement = document.createElement("button");
-    closeButtonElement.classList.add("modal-close");
-    closeButtonElement.innerText = "Close";
-    closeButtonElement.addEventListener("click", hideModal);
-
-    // Create elements for title and content
-    let titleElement = document.createElement("h1");
-    titleElement.innerText = title;
-    let contentElement = document.createElement("p");
-    contentElement.innerText = text;
-
-    // Create a container for the image and align it to the right
-    let imageContainer = document.createElement("div");
-    imageContainer.classList.add("image-container");
-
-    // Create element for image
-    let imageElement = document.createElement("img");
-    imageElement.src = imageUrl;
-
-    // Append image element to the image container
-    imageContainer.appendChild(imageElement);
+    // Create elements for name and content
+    let nameElement = $("<h1>" + item.name + "</h1>");
+    let heightElement = $("<p>" + "Height : " + item.height + "</p>");
+    let typesElement = $("<p>" + "Types: " + item.types + "</p>");
+    // Create image in modal content
+    let imageElement = $('<img class="modal-img" style="width:50%">');
+    imageElement.attr("src", item.imageUrl);
 
     // Append elements to the modal
-    modal.appendChild(closeButtonElement);
-    modal.appendChild(titleElement);
-    modal.appendChild(contentElement);
-    modal.appendChild(imageContainer);
-
-    // Append the modal to the modal container
-    modalContainer.appendChild(modal);
-
-    // Make the modal container visible
-    modalContainer.classList.add("is-visible");
+    modalTitle.append(nameElement);
+    modal.appendChild(heightElement);
+    modal.appendChild(typesElement);
+    modal.appendChild(imageElement);
   }
 
   // Function to hide the modal
