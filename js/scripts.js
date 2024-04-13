@@ -117,12 +117,9 @@ let pokemonRepository = (function () {
         })
         // Process JSON data
         .then(function (details) {
-          // Extract relevant details from the response
-          // Set the image URL to the front_default sprite
+          // Extract relevant details from the response and add them to the item parameter
           item.imageUrl = details.sprites.front_default;
-          // Set the height of the Pokemon
           item.height = details.height;
-          // Set the types of the Pokemon
           item.types = details.types;
           // Hide loading message after data is loaded
           hideLoadingMessage();
@@ -168,12 +165,9 @@ let pokemonRepository = (function () {
 
   // Function to show a modal with name and content
   function showModal(item) {
-    let modalTitle = $(".modal-title");
-    let modalBody = $(".modal-body");
-
     // Clear any existing content in the modal container
-    modalTitle.empty();
-    modalBody.empty();
+    $(".modal-title").empty();
+    $(".modal-body").empty();
 
     // Create elements for name and content
     let nameElement = $("<h1>" + item.name + "</h1>");
@@ -184,10 +178,11 @@ let pokemonRepository = (function () {
     imageElement.attr("src", item.imageUrl);
 
     // Append elements to the modal
-    modalTitle.append(nameElement);
-    modal.appendChild(heightElement);
-    modal.appendChild(typesElement);
-    modal.appendChild(imageElement);
+    $(".modal-title").append(nameElement);
+    $(".modal-body").append(heightElement, typesElement, imageElement);
+
+    // Show the modal using Bootstrap's modal method
+    $("#exampleModal").modal("show");
   }
 
   // Function to hide the modal
@@ -204,9 +199,9 @@ let pokemonRepository = (function () {
   });
 
   // Event listener to close the modal when clicked outside the modal
-  modalContainer.addEventListener("click", (e) => {
+  modal.addEventListener("click", (e) => {
     let target = e.target;
-    if (target === modalContainer) {
+    if (target === modal) {
       hideModal();
     }
   });
@@ -229,15 +224,6 @@ pokemonRepository.loadList().then(function () {
     // Add each Pokemon to the list
     pokemonRepository.addListItem(pokemon);
   });
-});
-
-// Get the Pokemon list using getAll() function
-let pokemonDetails = pokemonRepository.getAll();
-
-// Loop through each Pokemon in the pokemonList array
-pokemonDetails.forEach(function (pokemon) {
-  // Add each Pokemon to the list
-  pokemonRepository.addListItem(pokemon);
 });
 
 // Event listener for a button to directly show a modal
