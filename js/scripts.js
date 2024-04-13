@@ -62,7 +62,7 @@ let pokemonRepository = (function () {
     button.addEventListener("click", function () {
       // Call loadDetails to ensure Pokemon details are loaded
       pokemonRepository.loadDetails(pokemon).then(function () {
-        showModal(pokemonName, `Height: ${pokemon.height}`, pokemon.imageUrl); // Show modal with Pokemon name, height, and sprite image
+        showModal(pokemon); // Show modal with Pokemon name, height, and sprite image
       });
     });
   }
