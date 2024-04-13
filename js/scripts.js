@@ -4,8 +4,8 @@ let pokemonRepository = (function () {
   let pokemonList = [];
   let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=150";
 
-  // Select the modal container from the DOM
-  let modalContainer = document.querySelector("#modal-container");
+  // Select the modal from the DOM
+  let modal = document.querySelector(".modal");
 
   // Function to add a new Pokemon to the pokemonList array
   function add(pokemon) {
@@ -23,13 +23,6 @@ let pokemonRepository = (function () {
   function getAll() {
     return pokemonList;
   }
-
-  // // Function to log Pokemon details to the console
-  // function showDetails(pokemon) {
-  //   loadDetails(pokemon).then(function () {
-  //     console.log(pokemon);
-  //   });
-  // }
 
   // Function that adds Pokemon from the pokemonList array
   function addListItem(pokemon) {
@@ -52,6 +45,12 @@ let pokemonRepository = (function () {
     // Add a pokemonButton class to the button for styling
     button.classList.add("pokemonButton");
 
+    // Add Bootstrap attributes to button
+    button.setAttribute("data-target", "exampleModal");
+    button.setAttribute("data-toggle", "modal");
+
+    // Add Bootstrap class to list item
+    listItem.classList.add("list-group-item");
     // Append button to listItem as child
     listItem.appendChild(button);
 
@@ -62,7 +61,7 @@ let pokemonRepository = (function () {
     button.addEventListener("click", function () {
       // Call loadDetails to ensure Pokemon details are loaded
       pokemonRepository.loadDetails(pokemon).then(function () {
-        showModal(pokemon); // Show modal with Pokemon name, height, and sprite image
+        showModal(pokemon); // Show modal with Pokemon name and details
       });
     });
   }
