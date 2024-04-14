@@ -10,8 +10,57 @@ Background Color: #8A7295;
 
 */
 
+:root {
+  --primary-color: #edd1d1;
+  --secondary-color: #aea2c6;
+  --background-color: #8a7295;
+  --text-color: #eee;
+  --link-color: #ea92b6;
+  --secondary-link-color: #ed548d;
+}
+
 img {
-    width: 288px;
-    image-rendering: pixelated;
-    image-rendering: crisp-edges;
+  width: 288px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+ul {
+  padding-left: 0;
+}
+
+.list-group-item {
+  background-color: var(--secondary-color);
+}
+
+#navbar {
+    background-color: var(--primary-color);
+}
+
+body {
+  background-color: var(--background-color);
+}
+
+button,
+.btn,
+.btn-outline-info,
+.btn-lg {
+  color: var(--link-color);
+  border: none;
+  background-color: var(--background-color);
+}
+
+button:hover,
+.btn:hover,
+.btn-outline-info:hover,
+.btn-lg:hover {
+  color: #eee;
+  background-color: var(--secondary-color);
+}
+
+button:active,
+.btn:active,
+.btn-outline-info:active,
+.btn-lg:hover {
+    border: var(--secondary-link-color);
 }

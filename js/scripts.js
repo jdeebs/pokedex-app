@@ -7,6 +7,22 @@ let pokemonRepository = (function () {
   // Select the modal from the DOM
   let modal = document.querySelector(".modal");
 
+  // Function to create a new Bootstrap row
+  function createRow(parentElement) {
+    let rowDiv = document.createElement("div");
+    rowDiv.classList.add("row");
+    parentElement.appendChild(rowDiv);
+    return rowDiv;
+  }
+
+  // Function to create a new Bootstrap column
+  function createColumn(parentRow)  {
+    let colDiv = document.createElement("div");
+    colDiv.classList.add("col");
+    parentRow.appendChild(colDiv);
+    return colDiv;
+  }
+
   // Function to add a new Pokemon to the pokemonList array
   function add(pokemon) {
     // Check if parameter is an object
@@ -29,13 +45,14 @@ let pokemonRepository = (function () {
     // Assign pokemonList to ul element in html
     let pokemonListElement = document.querySelector(".pokemon-list");
 
-    // Create div element with Bootstrap row class
-    let rowDiv = document.createElement("div");
-    rowDiv.classList.add("row");
+    // Create a new row if the current row is filled or doesn't exist yet
+    let currentRow = document.querySelector(".row:last-of-type");
+    if (!currentRow || currentRow.children.length >= 3) {
+      currentRow = createRow(pokemonListElement);
+    }
 
-    // Create div element with Bootstrap column class
-    let colDiv = document.createElement("div");
-    colDiv.classList.add("col-12");
+    // Create a new column for the Pokemon button
+    let colDiv = createColumn(currentRow);
 
     // Create list item element in DOM
     let listItem = document.createElement("li");
@@ -51,26 +68,20 @@ let pokemonRepository = (function () {
     button.innerText = pokemonName;
 
     // Add a bootstrap button class for styling
-    button.classList.add("btn", "btn-outline-info", "btn-lg");
+    button.classList.add("btn", "btn-lg");
 
     // Add Bootstrap attributes to button
     button.setAttribute("data-target", "exampleModal");
     button.setAttribute("data-toggle", "modal");
 
     // Add Bootstrap class to list item
-    listItem.classList.add("list-group-item", "col-12");
+    listItem.classList.add("list-group-item");
 
     // Append button to listItem as child
     listItem.appendChild(button);
 
     // Append listItem to colDiv as child
     colDiv.appendChild(listItem);
-
-    // Append colDiv to rowDiv as child
-    rowDiv.appendChild(colDiv);
-
-    // Append rowDiv to pokemonListElement as child
-    pokemonListElement.appendChild(rowDiv);
 
     // Event listener to show modal when button is clicked
     button.addEventListener("click", function () {
@@ -185,8 +196,7 @@ let pokemonRepository = (function () {
     $(".modal-body").empty();
 
     // Capitalize the first letter of the Pokemon's name
-    let capitalName =
-    item.name.charAt(0).toUpperCase() + item.name.slice(1);
+    let capitalName = item.name.charAt(0).toUpperCase() + item.name.slice(1);
 
     // Create elements for name and content
     let nameElement = $("<h1>" + capitalName + "</h1>");
