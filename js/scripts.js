@@ -242,20 +242,6 @@ pokemonRepository.loadList().then(function () {
   });
 });
 
-// Event listener for a button to directly show a modal
-document.querySelector(".pokemon-list").addEventListener("click", (event) => {
-  if (event.target.classList.contains("pokemonButton")) {
-    let pokemonName = event.target.innerText;
-    let pokemon = pokemonRepository
-      .getAll()
-      .find((p) => p.name === pokemonName);
-
-    if (pokemon) {
-      showModal(pokemon.name, `Height: ${pokemon.height}`);
-    }
-  }
-});
-
 // Create Pokedex container wrapper for styling
 document.write(`<div class="pokedex-container-wrapper">`);
 
