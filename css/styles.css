@@ -50,17 +50,3 @@ button,
   background-color: var(--background-color);
 }
 
-button:hover,
-.btn:hover,
-.btn-outline-info:hover,
-.btn-lg:hover {
-  color: #eee;
-  background-color: var(--secondary-color);
-}
-
-button:active,
-.btn:active,
-.btn-outline-info:active,
-.btn-lg:hover {
-    border: var(--secondary-link-color);
-}

@@ -18,7 +18,7 @@ let pokemonRepository = (function () {
   // Function to create a new Bootstrap column
   function createColumn(parentRow)  {
     let colDiv = document.createElement("div");
-    colDiv.classList.add("col");
+    colDiv.classList.add("col-md-4");
     parentRow.appendChild(colDiv);
     return colDiv;
   }
@@ -71,7 +71,7 @@ let pokemonRepository = (function () {
     button.classList.add("btn", "btn-lg");
 
     // Add Bootstrap attributes to button
-    button.setAttribute("data-target", "exampleModal");
+    button.setAttribute("data-target", "pokemonModal");
     button.setAttribute("data-toggle", "modal");
 
     // Add Bootstrap class to list item
@@ -223,7 +223,7 @@ let pokemonRepository = (function () {
     $(".modal-body").append(heightElement, typesElement, imageElement);
 
     // Show the modal using Bootstrap's modal method
-    $("#exampleModal").modal("show");
+    $("#pokemonModal").modal("show");
   }
 
   // Function to hide the modal
