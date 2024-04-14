@@ -29,6 +29,14 @@ let pokemonRepository = (function () {
     // Assign pokemonList to ul element in html
     let pokemonListElement = document.querySelector(".pokemon-list");
 
+    // Create div element with Bootstrap row class
+    let rowDiv = document.createElement("div");
+    rowDiv.classList.add("row");
+
+    // Create div element with Bootstrap column class
+    let colDiv = document.createElement("div");
+    colDiv.classList.add("col-12");
+
     // Create list item element in DOM
     let listItem = document.createElement("li");
 
@@ -42,20 +50,27 @@ let pokemonRepository = (function () {
     // Set the inner text of the button to be Pokemon's name capitalized
     button.innerText = pokemonName;
 
-    // Add a pokemonButton class to the button for styling
-    button.classList.add("pokemonButton");
+    // Add a bootstrap button class for styling
+    button.classList.add("btn", "btn-outline-info", "btn-lg");
 
     // Add Bootstrap attributes to button
     button.setAttribute("data-target", "exampleModal");
     button.setAttribute("data-toggle", "modal");
 
     // Add Bootstrap class to list item
-    listItem.classList.add("list-group-item");
+    listItem.classList.add("list-group-item", "col-12");
+
     // Append button to listItem as child
     listItem.appendChild(button);
 
-    // Append listItem to pokemonList as child
-    pokemonListElement.appendChild(listItem);
+    // Append listItem to colDiv as child
+    colDiv.appendChild(listItem);
+
+    // Append colDiv to rowDiv as child
+    rowDiv.appendChild(colDiv);
+
+    // Append rowDiv to pokemonListElement as child
+    pokemonListElement.appendChild(rowDiv);
 
     // Event listener to show modal when button is clicked
     button.addEventListener("click", function () {
@@ -172,7 +187,7 @@ let pokemonRepository = (function () {
     // Capitalize the first letter of the Pokemon's name
     let capitalName =
     item.name.charAt(0).toUpperCase() + item.name.slice(1);
-    
+
     // Create elements for name and content
     let nameElement = $("<h1>" + capitalName + "</h1>");
     let heightElement = $("<p>" + "Height: " + item.height + "</p>");

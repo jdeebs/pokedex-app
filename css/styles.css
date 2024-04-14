@@ -1,0 +1,17 @@
+/* 
+Colors used
+
+Text Color (White): #eee;
+Link Text Color: #EA92B6;
+Secondary Link Text Color: #ED548D;
+Primary Color: #EDD1D1;
+Secondary Color: #AEA2C6;
+Background Color: #8A7295;
+
+*/
+
+img {
+    width: 288px;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
