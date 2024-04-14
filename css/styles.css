@@ -41,12 +41,18 @@ body {
   background-color: var(--background-color);
 }
 
-button,
-.btn,
-.btn-outline-info,
-.btn-lg {
+#pokemonButton {
   color: var(--link-color);
-  border: none;
   background-color: var(--background-color);
 }
 
+#pokemonButton:hover,
+#pokemonButton:active,
+#pokemonButton:focus,
+#pokemonButton:visited {
+    color: var(--secondary-link-color);
+}
+
+.modal-content {
+    background-color: var(--primary-color);
+}

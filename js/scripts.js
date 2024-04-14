@@ -16,7 +16,7 @@ let pokemonRepository = (function () {
   }
 
   // Function to create a new Bootstrap column
-  function createColumn(parentRow)  {
+  function createColumn(parentRow) {
     let colDiv = document.createElement("div");
     colDiv.classList.add("col-md-4");
     parentRow.appendChild(colDiv);
@@ -67,8 +67,9 @@ let pokemonRepository = (function () {
     // Set the inner text of the button to be Pokemon's name capitalized
     button.innerText = pokemonName;
 
-    // Add a bootstrap button class for styling
+    // Add a bootstrap button class and id for styling
     button.classList.add("btn", "btn-lg");
+    button.setAttribute("id", "pokemonButton");
 
     // Add Bootstrap attributes to button
     button.setAttribute("data-target", "pokemonModal");
