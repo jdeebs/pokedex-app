@@ -145,7 +145,8 @@ let pokemonRepository = (function () {
         // Process JSON data
         .then(function (details) {
           // Extract relevant details from the response and add them to the item parameter
-          item.imageUrl = details.sprites.front_default;
+          item.imageUrlFront = details.sprites.front_default;
+          item.imageUrlBack = details.sprites.back_default;
           item.height = details.height;
           item.types = details.types;
           // Hide loading message after data is loaded
@@ -215,13 +216,15 @@ let pokemonRepository = (function () {
     // Create element for types content
     let typesElement = $("<p>" + typesString + "</p>");
 
-    // Create image in modal content
-    let imageElement = $('<img class="modal-img" style="width:50%">');
-    imageElement.attr("src", item.imageUrl);
+    // Create front and back images in modal content
+    let imageElementFront = $('<img class="modal-img" style="width:50%">');
+    imageElementFront.attr("src", item.imageUrlFront);
+    let imageElementBack = $('<img class="modal-img" style="width:50%">');
+    imageElementBack.attr("src", item.imageUrlBack);
 
     // Append elements to the modal
     $(".modal-title").append(nameElement);
-    $(".modal-body").append(heightElement, typesElement, imageElement);
+    $(".modal-body").append(heightElement, typesElement, imageElementFront, imageElementBack);
 
     // Show the modal using Bootstrap's modal method
     $("#pokemonModal").modal("show");
