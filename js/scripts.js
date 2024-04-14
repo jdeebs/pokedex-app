@@ -169,10 +169,26 @@ let pokemonRepository = (function () {
     $(".modal-title").empty();
     $(".modal-body").empty();
 
+    // Capitalize the first letter of the Pokemon's name
+    let capitalName =
+    item.name.charAt(0).toUpperCase() + item.name.slice(1);
+    
     // Create elements for name and content
-    let nameElement = $("<h1>" + item.name + "</h1>");
-    let heightElement = $("<p>" + "Height : " + item.height + "</p>");
-    let typesElement = $("<p>" + "Types: " + item.types + "</p>");
+    let nameElement = $("<h1>" + capitalName + "</h1>");
+    let heightElement = $("<p>" + "Height: " + item.height + "</p>");
+
+    // Create an empty string to store types
+    let typesString = "Types: ";
+    // Loop through each type object in the types array
+    item.types.forEach(function (type) {
+      // Add the type name to the typesString
+      typesString += type.type.name + ", ";
+    });
+    // Remove the trailing comma and space from the typesString
+    typesString = typesString.slice(0, -2);
+    // Create element for types content
+    let typesElement = $("<p>" + typesString + "</p>");
+
     // Create image in modal content
     let imageElement = $('<img class="modal-img" style="width:50%">');
     imageElement.attr("src", item.imageUrl);
