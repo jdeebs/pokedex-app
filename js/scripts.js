@@ -161,7 +161,7 @@ let pokemonRepository = (function () {
 
   // Function to display loading message
   function showLoadingMessage() {
-    // Delay showing the loading message for 3 seconds
+    // Display a loading message, only if the data takes longer than usual to load
     setTimeout(function () {
       // Create loading message element
       let loadingMessage = document.createElement("div");
@@ -175,7 +175,7 @@ let pokemonRepository = (function () {
       setTimeout(function () {
         hideLoadingMessage();
       }, 0); // Change delay as needed for testing
-    }, 3000);
+    }, 3000); // 3 second delay before showing the loading message
   }
 
   // Function to hide loading message
