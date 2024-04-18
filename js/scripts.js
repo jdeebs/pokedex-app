@@ -224,7 +224,12 @@ let pokemonRepository = (function () {
 
     // Append elements to the modal
     $(".modal-title").append(nameElement);
-    $(".modal-body").append(heightElement, typesElement, imageElementFront, imageElementBack);
+    $(".modal-body").append(
+      heightElement,
+      typesElement,
+      imageElementFront,
+      imageElementBack
+    );
 
     // Show the modal using Bootstrap's modal method
     $("#pokemonModal").modal("show");
