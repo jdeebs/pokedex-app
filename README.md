@@ -21,5 +21,5 @@ View a list of Pokémon and see more data for that Pokémon on demand.
 - Pokémon front and back sprite images are loaded with the data
 
 ## Additional Resources
-This app uses the [PokéAPI](https://pokeapi.co/).
-This app uses [Bootstrap](https://getbootstrap.com/) and [jQuery](https://jquery.com/).
+This app uses the [PokéAPI](https://pokeapi.co/),
+[Bootstrap](https://getbootstrap.com/) and [jQuery](https://jquery.com/).
