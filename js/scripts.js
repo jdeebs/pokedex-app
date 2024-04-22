@@ -76,8 +76,9 @@ let pokemonRepository = (function () {
     button.setAttribute("data-target", "pokemonModal");
     button.setAttribute("data-toggle", "modal");
 
-    // Add Bootstrap class to list item
+    // Add Bootstrap class to list item and id of pokemon name for search selection
     listItem.classList.add("list-group-item");
+    listItem.setAttribute("id", pokemon.name);
 
     // Append button to listItem as child
     listItem.appendChild(button);
@@ -263,11 +264,17 @@ let pokemonRepository = (function () {
       const val = e.target.value.toLowerCase();
       // Iterate through each Pokemon button and hide/show based on search input
       pokemonList.forEach((pokemon) => {
-        const pokemonButton = document.getElementById(pokemon.name);
+        const pokemonButton = document.getElementById("pokemonButton " + pokemon.name);
+        const listItem = document.getElementById(pokemon.name);
+
         if (pokemon.name.toLowerCase().indexOf(val) > -1) {
           // Show button if name matches input
+          pokemonButton.classList.remove("d-none");
+          listItem.classList.remove("d-none");
         } else {
           // Hide button if name doesn't match input
+          pokemonButton.classList.add("d-none");
+          listItem.classList.add("d-none");
         }
       });
     });
@@ -294,7 +301,7 @@ pokemonRepository.loadList().then(function () {
   });
 
   // Call createSearchFilter after loading the list of Pokemon
-  createSearchFilter(pokemonRepository.getAll());
+  pokemonRepository.createSearchFilter(pokemonRepository.getAll());
 });
 
 // Create Pokedex container wrapper for styling
