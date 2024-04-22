@@ -4,8 +4,9 @@ let pokemonRepository = (function () {
   let pokemonList = [];
   let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=150";
 
-  // Select the modal from the DOM
+  // Select the modal and search input from the DOM
   let modal = document.querySelector(".modal");
+  const searchInput = document.getElementById("search-input");
 
   // Function to create a new Bootstrap row
   function createRow(parentElement) {
@@ -67,9 +68,9 @@ let pokemonRepository = (function () {
     // Set the inner text of the button to be Pokemon's name capitalized
     button.innerText = pokemonName;
 
-    // Add a bootstrap button class and id for styling
+    // Add a bootstrap button class, id for styling and pokemon name for search selection
     button.classList.add("btn", "btn-lg");
-    button.setAttribute("id", "pokemonButton");
+    button.setAttribute("id", "pokemonButton " + pokemon.name);
 
     // Add Bootstrap attributes to button
     button.setAttribute("data-target", "pokemonModal");
@@ -256,6 +257,22 @@ let pokemonRepository = (function () {
     }
   });
 
+  // Function to search for Pokemon
+  const createSearchFilter = (pokemonList) => {
+    searchInput.addEventListener("keyup", (e) => {
+      const val = e.target.value.toLowerCase();
+      // Iterate through each Pokemon button and hide/show based on search input
+      pokemonList.forEach((pokemon) => {
+        const pokemonButton = document.getElementById(pokemon.name);
+        if (pokemon.name.toLowerCase().indexOf(val) > -1) {
+          // Show button if name matches input
+        } else {
+          // Hide button if name doesn't match input
+        }
+      });
+    });
+  };
+
   // Return an object public functions
   return {
     add: add, // Expose the add function
@@ -264,6 +281,7 @@ let pokemonRepository = (function () {
     loadList: loadList, // Expose the loadList function
     loadDetails: loadDetails, // Expose the loadDetails function
     showModal: showModal, // Expose the showModal function
+    createSearchFilter: createSearchFilter, // Expose the createSearchFilter function
   };
 })();
 
@@ -274,6 +292,9 @@ pokemonRepository.loadList().then(function () {
     // Add each Pokemon to the list
     pokemonRepository.addListItem(pokemon);
   });
+
+  // Call createSearchFilter after loading the list of Pokemon
+  createSearchFilter(pokemonRepository.getAll());
 });
 
 // Create Pokedex container wrapper for styling
