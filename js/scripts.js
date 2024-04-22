@@ -269,12 +269,10 @@ let pokemonRepository = (function () {
 
         if (pokemon.name.toLowerCase().indexOf(val) > -1) {
           // Show button if name matches input
-          pokemonButton.classList.remove("d-none");
-          listItem.classList.remove("d-none");
         } else {
           // Hide button if name doesn't match input
-          pokemonButton.classList.add("d-none");
-          listItem.classList.add("d-none");
+          pokemonButton.remove();
+          listItem.remove();
         }
       });
     });
