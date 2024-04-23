@@ -2,6 +2,7 @@
 let pokemonRepository = (function () {
   // Initialize an array to store Pokemon data
   let pokemonList = [];
+  let currentPokemonList = [];
   let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=150";
 
   // Select the modal and search input from the DOM
@@ -24,12 +25,60 @@ let pokemonRepository = (function () {
     return colDiv;
   }
 
+  // Function to remove empty rows
+  function removeEmptyRows() {
+    const rows = document.querySelectorAll(".row");
+    rows.forEach((row) => {
+      // Check if the row has no visible children
+      if (
+        !Array.from(row.children).some(
+          (child) => !child.classList.contains("d-none")
+        )
+      ) {
+        // Remove the row if it has no visible children
+        row.remove();
+      }
+    });
+
+    // Check if the search input is empty
+    if (searchInput.value === "") {
+      // If empty, re-render the entire list using the original pokemonList array
+      pokemonRepository.getAll().forEach((pokemon) => {
+        const pokemonButton = document.getElementById(pokemon.name);
+        const listItem = document.getElementById(pokemon.name);
+        pokemonButton.classList.remove("d-none");
+        listItem.classList.remove("d-none");
+      });
+    } else {
+      // If not empty, iterate through each Pokemon and hide/show based on search input
+      pokemonRepository.getAll().forEach((pokemon) => {
+        const pokemonButton = document.getElementById(
+          "pokemonButton " + pokemon.name
+        );
+        const listItem = document.getElementById(pokemon.name);
+        const val = searchInput.value.toLowerCase();
+
+        // Check if the name of the Pokemon matches the search input
+        if (pokemon.name.toLowerCase().indexOf(val) > -1) {
+          // Show list item and button if name matches input
+          pokemonButton.classList.remove("d-none");
+          listItem.classList.remove("d-none");
+        } else {
+          // Hide button if name doesn't match input
+          pokemonButton.classList.add("d-none");
+          listItem.classList.add("d-none");
+        }
+      });
+    }
+  }
+
   // Function to add a new Pokemon to the pokemonList array
   function add(pokemon) {
     // Check if parameter is an object
     if (typeof pokemon === "object" && pokemon !== null) {
       // If an object, push it to the pokemonList array
       pokemonList.push(pokemon);
+      currentPokemonList.push(pokemon);
     } else {
       // If not an object, log an error message
       console.error("Error: Parameter of add() must be an object");
@@ -38,7 +87,7 @@ let pokemonRepository = (function () {
 
   // Function to retrieve all Pokemon data from the pokemonList array
   function getAll() {
-    return pokemonList;
+    return currentPokemonList;
   }
 
   // Function that adds Pokemon from the pokemonList array
@@ -262,21 +311,45 @@ let pokemonRepository = (function () {
   const createSearchFilter = (pokemonList) => {
     searchInput.addEventListener("keyup", (e) => {
       const val = e.target.value.toLowerCase();
-      // Iterate through each Pokemon button and hide/show based on search input
+      // Iterate through each Pokemon in the list
       pokemonList.forEach((pokemon) => {
-        const pokemonButton = document.getElementById("pokemonButton " + pokemon.name);
+        // Get the button element corresponding to the current Pokemon
+        const pokemonButton = document.getElementById(
+          "pokemonButton " + pokemon.name
+        );
+        // Get the list item element corresponding to the current Pokemon
         const listItem = document.getElementById(pokemon.name);
 
-        if (pokemon.name.toLowerCase().indexOf(val) > -1) {
-          // Show button if name matches input
+        // Check if the name of the Pokemon matches the search input
+        if (pokemon.name.toLowerCase().includes(val)) {
+          // Show list item and button if name matches input
+          pokemonButton.classList.remove("d-none");
+          listItem.classList.remove("d-none");
         } else {
           // Hide button if name doesn't match input
-          pokemonButton.remove();
-          listItem.remove();
+          pokemonButton.classList.add("d-none");
+          listItem.classList.add("d-none");
         }
       });
+
+      // Remove empty rows
+      removeEmptyRows();
     });
   };
+
+  // Function to update the DOM with the filtered Pokemon list
+  function updatePokemonList(filteredPokemonList) {
+    // Clear existing Pokemon list
+    pokemonListElement.innerHTML = "";
+
+    // Add the filtered Pokemon to the list
+    filteredPokemonList.forEach(function (pokemon) {
+      addListItem(pokemon);
+    });
+
+    // Remove empty rows
+    removeEmptyRows();
+  }
 
   // Return an object public functions
   return {
